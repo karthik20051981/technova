@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Student Consultancy Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #010d01;
+        }
+
+        .toggle-link {
+            color: #4CAF50;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="signin-container">
+        <h2>Sign In</h2>
+        <input type="text" id="signin-username" placeholder="Enter Username" required>
+        <input type="password" id="signin-password" placeholder="Enter Password" required>
+        <button onclick="signIn()">Sign In</button>
+        <p class="message" id="signin-message"></p>
+        <p class="toggle-link" onclick="toggleForms()">Don't have an account? Sign Up</p>
+    </div>
+
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Choose a Username" required>
+        <input type="password" id="signup-password" placeholder="Create a Password" required>
+        <button onclick="signUp()">Sign Up</button>
+        <p class="message" id="signup-message"></p>
+        <p class="toggle-link" onclick="toggleForms()">Already have an account? Sign In</p>
+    </div>
+
+    <script>
+        function toggleForms() {
+            document.getElementById("signin-container").style.display = 
+                document.getElementById("signin-container").style.display === "none" ? "block" : "none";
+            document.getElementById("signup-container").style.display = 
+                document.getElementById("signup-container").style.display === "none" ? "block" : "none";
+        }
+
+        function signUp() {
+            let username = document.getElementById("signup-username").value.trim();
+            let password = document.getElementById("signup-password").value.trim();
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (!username || !password) {
+                document.getElementById("signup-message").textContent = "All fields are required!";
+                return;
+            }
+
+            if (users[username]) {
+                document.getElementById("signup-message").textContent = "Username already exists! Try another.";
+                return;
+            }
+
+            users[username] = password;
+            localStorage.setItem("users", JSON.stringify(users));
+            document.getElementById("signup-message").textContent = "Account created successfully! You can now sign in.";
+            setTimeout(() => {
+                toggleForms();
+            }, 2000);
+        }
+
+        function signIn() {
+            let username = document.getElementById("signin-username").value.trim();
+            let password = document.getElementById("signin-password").value.trim();
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (!username || !password) {
+                document.getElementById("signin-message").textContent = "All fields are required!";
+                return;
+            }
+
+            if (!users[username]) {
+                document.getElementById("signin-message").textContent = "Username not found! Please sign up.";
+                return;
+            }
+
+            if (users[username] !== password) {
+                document.getElementById("signin-message").textContent = "Incorrect password! Try again.";
+                return;
+            }
+
+            document.getElementById("signin-message").textContent = "Login successful! Redirecting...";
+            setTimeout(() => {
+                window.location.href = "p2.html";
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>

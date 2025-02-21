@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Consultancy Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Student Consultancy Services</h1>
+        <p>Personalized Guidance for Your Academic Journey</p>
+    </header>
+
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <a href="https://louisedconsulting.com/comprehensive-support-for-students/" class="service-card">
+                <h3>🎓 Comprehensive Support</h3>
+                <p>Customized guidance for every educational stage</p>
+            </a>
+            <a href="https://www.edwiseinternational.com/" class="service-card">
+                <h3>📊 Expert Counseling</h3>
+                <p>Personalized strategies for academic and career success</p>
+            </a>
+            <a href="https://holistichigheredsolutions.com/" class="service-card">
+                <h3>🌐 Holistic Approach</h3>
+                <p>Addressing individual educational and professional goals</p>
+            </a>
+            <a href="https://setmycareer.com/blog/career-planning-tips-for-students.php" class="service-card">
+                <h3>💡 Strategic Planning</h3>
+                <p>Innovative solutions for your academic journey</p>
+            </a>
+        </div>
+    </section>
+
+    <button id="expand-box-button">Test Your Status</button>
+
+    <div id="expandable-box" class="expandable-box">
+        <h3>Career Recommendations</h3>
+        <form id="career-form">
+            <label for="gpa">Academic Performance (GPA/10):</label>
+            <input type="number" id="gpa" min="0" max="10" step="0.1" required>
+
+            <label for="career-interest">Career Interests (Skills/Sectors):</label>
+            <input type="text" id="career-interest" required placeholder="Enter your interests">
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <div id="recommendations"></div>
+    </div>
+
+    <footer>
+        <p>© 2024 Student Consultancy Services</p>
+        <a href="#">View Source</a>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
